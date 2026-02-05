@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neoclassical Romance - Event Design Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f0;
+            overflow-x: hidden;
+        }
+        
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, #c9b8a0 0%, #f5f5f0 50%, #c9b8a0 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 8s linear infinite;
+        }
+
+        .image-card {
+            overflow: hidden;
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 1rem;
+        }
+
+        .image-card img {
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-card:hover img { transform: scale(1.05); }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .image-card:hover .image-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .color-box {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .color-box:hover { transform: translateY(-5px); }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .logo-hero {
+            position: absolute;
+            top: 2.5rem;
+            left: 2.5rem;
+            z-index: 50;
+        }
+
+        .logo-hero img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+
+        .designer-tag {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            z-index: 50;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .logo-hero { top: 1.5rem; left: 1.5rem; }
+            .logo-hero img { height: 40px; }
+            .designer-tag { 
+                bottom: 1.5rem; 
+                right: 1.5rem;
+                left: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#0a0a0a] z-10"></div>
+        
+        <div class="logo-hero">
+            <img src="https://i.imgur.com/2F78wTm.jpeg" alt="Logo">
+        </div>
+        
+        <div class="absolute inset-0">
+            <img src="https://i.imgur.com/NEIOSe7.jpeg" alt="Main Event Space" class="w-full h-full object-cover opacity-70">
+        </div>
+
+        <div class="relative z-20 h-full flex flex-col justify-center items-center px-6 text-center">
+            <p class="text-xs md:text-sm tracking-[0.4em] uppercase text-[#c9b8a0] mb-6 fade-in">
+                Event Design Proposal
+            </p>
+            <h1 class="serif text-5xl md:text-7xl lg:text-8xl font-light text-white mb-4 leading-tight fade-in" style="transition-delay: 0.2s;">
+                <span class="block shimmer">Neoclassical</span>
+                <span class="block italic text-[#c9b8a0]">Romance</span>
+            </h1>
+            <p class="max-w-lg mx-auto text-base md:text-lg text-gray-200 font-light leading-relaxed mt-6 px-4 fade-in" style="transition-delay: 0.4s;">
+                A symphony of classical architecture, candlelit intimacy, and timeless elegance
+            </p>
+        </div>
+        
+        <div class="designer-tag fade-in" style="transition-delay: 0.6s;">
+            <p class="text-[#c9b8a0] text-[10px] md:text-xs tracking-[0.3em] uppercase mb-1">Designed by</p>
+            <p class="serif text-xl md:text-2xl text-white italic">Mohamed Tunis</p>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+            <svg class="w-5 h-5 text-[#c9b8a0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Concept Statement -->
+    <section class="py-20 md:py-32 px-6 max-w-4xl mx-auto text-center">
+        <p class="text-xs tracking-[0.3em] uppercase text-[#c9b8a0] mb-6 fade-in">Design Concept</p>
+        <h2 class="serif text-3xl md:text-4xl text-white font-light leading-snug fade-in" style="transition-delay: 0.1s;">
+            Where grand colonnades meet soft, romantic drapery. An atmosphere of understated luxury that honors classical proportions while embracing intimate, human-scale warmth.
+        </h2>
+    </section>
+
+    <!-- Color Palette -->
+    <section class="py-16 md:py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-xs tracking-[0.3em] uppercase text-[#c9b8a0] mb-4 fade-in">Color Palette</p>
+            <h2 class="serif text-3xl md:text-4xl text-white font-light fade-in" style="transition-delay: 0.1s;">Tonal Harmony</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="color-box fade-in" style="transition-delay: 0.1s;">
+                <div class="h-32 md:h-40 bg-[#F5F5F0] rounded-t-lg"></div>
+                <div class="bg-[#141414] p-3 md:p-4 rounded-b-lg border border-white/5">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider">Warm White</p>
+                    <p class="text-[#F5F5F0] font-mono text-xs mt-1">#F5F5F0</p>
+                </div>
+            </div>
+
+            <div class="color-box fade-in" style="transition-delay: 0.2s;">
+                <div class="h-32 md:h-40 bg-[#E8E0D5] rounded-t-lg"></div>
+                <div class="bg-[#141414] p-3 md:p-4 rounded-b-lg border border-white/5">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider">Champagne</p>
+                    <p class="text-[#E8E0D5] font-mono text-xs mt-1">#E8E0D5</p>
+                </div>
+            </div>
+
+            <div class="color-box fade-in" style="transition-delay: 0.3s;">
+                <div class="h-32 md:h-40 bg-[#C9B8A0] rounded-t-lg"></div>
+                <div class="bg-[#141414] p-3 md:p-4 rounded-b-lg border border-white/5">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider">Antique Gold</p>
+                    <p class="text-[#C9B8A0] font-mono text-xs mt-1">#C9B8A0</p>
+                </div>
+            </div>
+
+            <div class="color-box fade-in" style="transition-delay: 0.4s;">
+                <div class="h-32 md:h-40 bg-[#2A2A2A] rounded-t-lg border border-white/10"></div>
+                <div class="bg-[#141414] p-3 md:p-4 rounded-b-lg border border-white/5">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider">Charcoal</p>
+                    <p class="text-gray-300 font-mono text-xs mt-1">#2A2A2A</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-xs tracking-[0.3em] uppercase text-[#c9b8a0] mb-4 fade-in">Visual References</p>
+            <h2 class="serif text-3xl md:text-4xl text-white font-light fade-in" style="transition-delay: 0.1s;">Spatial Poetry</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            <!-- Featured: Floral -->
+            <div class="image-card lg:col-span-2 lg:row-span-2 min-h-[400px] md:min-h-[600px] fade-in">
+                <img src="https://i.imgur.com/FurFo9O.jpeg" alt="Floral Installation">
+                <div class="image-caption">
+                    <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-2">Floral Design</p>
+                    <h3 class="serif text-2xl text-white">Garden Romance</h3>
+                </div>
+            </div>
+
+            <!-- Altar -->
+            <div class="image-card h-64 md:h-80 fade-in" style="transition-delay: 0.1s;">
+                <img src="https://i.imgur.com/HhiNtbE.jpeg" alt="Altar">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">The Altar</p>
+                </div>
+            </div>
+
+            <!-- Aisle -->
+            <div class="image-card h-64 md:h-80 fade-in" style="transition-delay: 0.2s;">
+                <img src="https://i.imgur.com/qfJprJ7.jpeg" alt="Processional">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">The Processional</p>
+                </div>
+            </div>
+
+            <!-- Chandeliers -->
+            <div class="image-card lg:col-span-2 h-64 md:h-80 fade-in" style="transition-delay: 0.3s;">
+                <img src="https://i.imgur.com/9uWpSfb.jpeg" alt="Lighting">
+                <div class="image-caption">
+                    <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-2">Lighting</p>
+                    <h3 class="serif text-xl text-white">Crystal Rain</h3>
+                </div>
+            </div>
+
+            <!-- Aerial -->
+            <div class="image-card h-64 md:h-80 fade-in" style="transition-delay: 0.1s;">
+                <img src="https://i.imgur.com/yzdAQM9.jpeg" alt="Aerial View">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">Aerial Perspective</p>
+                </div>
+            </div>
+
+            <!-- Wide -->
+            <div class="image-card lg:col-span-2 h-64 md:h-80 fade-in" style="transition-delay: 0.2s;">
+                <img src="https://i.imgur.com/TT5YPpF.jpeg" alt="Wide View">
+                <div class="image-caption">
+                    <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-2">Spatial Design</p>
+                    <h3 class="serif text-xl text-white">Grandeur & Grace</h3>
+                </div>
+            </div>
+
+            <!-- Stage -->
+            <div class="image-card h-64 fade-in" style="transition-delay: 0.3s;">
+                <img src="https://i.imgur.com/7RhjD5N.jpeg" alt="Stage">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">The Stage</p>
+                </div>
+            </div>
+
+            <!-- Seating -->
+            <div class="image-card h-64 fade-in" style="transition-delay: 0.1s;">
+                <img src="https://i.imgur.com/5LFN4gM.jpeg" alt="Seating">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">Guest Experience</p>
+                </div>
+            </div>
+
+            <!-- Detail -->
+            <div class="image-card h-64 fade-in" style="transition-delay: 0.2s;">
+                <img src="https://i.imgur.com/eMs2IM0.jpeg" alt="Detail">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">Intimate Details</p>
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <div class="image-card lg:col-span-2 h-64 md:h-80 fade-in" style="transition-delay: 0.3s;">
+                <img src="https://i.imgur.com/ogSxGSi.jpeg" alt="Architecture">
+                <div class="image-caption">
+                    <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-2">Structure</p>
+                    <h3 class="serif text-xl text-white">Classical Lines</h3>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <div class="image-card h-64 md:h-80 fade-in" style="transition-delay: 0.1s;">
+                <img src="https://i.imgur.com/Ku3WXlq.jpeg" alt="Overview">
+                <div class="image-caption">
+                    <p class="text-white serif text-lg italic">Complete Vision</p>
+                </div>
+            </div>
+
+            <!-- Full Width Finale -->
+            <div class="image-card lg:col-span-3 h-72 md:h-96 fade-in" style="transition-delay: 0.2s;">
+                <img src="https://i.imgur.com/J0Z4xDR.jpeg" alt="Full Experience">
+                <div class="image-caption">
+                    <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-2">The Experience</p>
+                    <h3 class="serif text-2xl md:text-3xl text-white">Timeless Elegance</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Materials -->
+    <section class="py-16 md:py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-xs tracking-[0.3em] uppercase text-[#c9b8a0] mb-4 fade-in">Materials & Textures</p>
+            <h2 class="serif text-3xl md:text-4xl text-white font-light fade-in" style="transition-delay: 0.1s;">Luxurious Elements</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center p-6 md:p-8 fade-in" style="transition-delay: 0.1s;">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-[#c9b8a0]/30 flex items-center justify-center">
+                    <span class="text-2xl">🪨</span>
+                </div>
+                <h3 class="serif text-xl text-white mb-3">Marble & Stone</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Veined marble surfaces create a foundation of classical luxury and permanence.</p>
+            </div>
+            
+            <div class="text-center p-6 md:p-8 fade-in" style="transition-delay: 0.2s;">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-[#c9b8a0]/30 flex items-center justify-center">
+                    <span class="text-2xl">💎</span>
+                </div>
+                <h3 class="serif text-xl text-white mb-3">Crystal & Light</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Hand-cut chandeliers capture and refract light, creating dancing prisms.</p>
+            </div>
+            
+            <div class="text-center p-6 md:p-8 fade-in" style="transition-delay: 0.3s;">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-[#c9b8a0]/30 flex items-center justify-center">
+                    <span class="text-2xl">🌸</span>
+                </div>
+                <h3 class="serif text-xl text-white mb-3">Silk & Florals</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Flowing drapery and lush blooms soften architectural lines with warmth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Elements -->
+    <section class="py-16 px-6 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-xs tracking-[0.3em] uppercase text-[#c9b8a0] mb-4 fade-in">Design Principles</p>
+            <h2 class="serif text-3xl md:text-4xl text-white font-light fade-in" style="transition-delay: 0.1s;">Signature Elements</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="fade-in" style="transition-delay: 0.1s;">
+                <p class="text-3xl mb-3">⚖️</p>
+                <p class="text-white text-sm font-medium mb-1">Symmetry</p>
+                <p class="text-gray-500 text-xs">Classical balance</p>
+            </div>
+            <div class="fade-in" style="transition-delay: 0.2s;">
+                <p class="text-3xl mb-3">🕯️</p>
+                <p class="text-white text-sm font-medium mb-1">Candlelight</p>
+                <p class="text-gray-500 text-xs">Intimate warmth</p>
+            </div>
+            <div class="fade-in" style="transition-delay: 0.3s;">
+                <p class="text-3xl mb-3">🏛️</p>
+                <p class="text-white text-sm font-medium mb-1">Arches</p>
+                <p class="text-gray-500 text-xs">Roman elegance</p>
+            </div>
+            <div class="fade-in" style="transition-delay: 0.4s;">
+                <p class="text-3xl mb-3">✨</p>
+                <p class="text-white text-sm font-medium mb-1">Reflection</p>
+                <p class="text-gray-500 text-xs">Luminous depth</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t border-white/10 bg-[#080808]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <img src="https://i.imgur.com/2F78wTm.jpeg" alt="Logo" class="h-10 w-auto filter brightness(0) invert(1) opacity-90">
+            </div>
+            
+            <div class="text-center md:text-right">
+                <p class="text-[#c9b8a0] text-[10px] tracking-[0.3em] uppercase mb-1">Designed by</p>
+                <p class="serif text-2xl text-white italic">Mohamed Tunis</p>
+                <p class="text-gray-600 text-xs mt-1">Event Design & Styling</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <p class="text-gray-800 text-[10px] tracking-wider uppercase">Neoclassical Romance — Event Design Proposal</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Color copy functionality
+        document.querySelectorAll('.color-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const hex = this.querySelector('.font-mono').textContent;
+                navigator.clipboard.writeText(hex);
+                
+                // Simple feedback
+                const original = this.style.transform;
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => this.style.transform = original, 150);
+            });
+        });
+    </script>
+</body>
+</html>
